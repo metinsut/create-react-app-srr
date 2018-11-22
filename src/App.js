@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { renderRoutes } from 'react-router-config';
+import Header from "./pages/header";
+import {createGlobalStyle} from "styled-components";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+
+const GlobalStyle = createGlobalStyle`
+  body {
+     margin:0;
   }
-}
+`
 
-export default App;
+
+const App = ({ route }) => {
+    return (
+        <Fragment>
+           <GlobalStyle />
+            <Header/>
+            {renderRoutes(route.routes)}
+        </Fragment>
+    )
+};
+
+export default {
+    component: App
+};
